@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
-    public void create(CustomerRequest customerRequest){
+    public Customer create(CustomerRequest customerRequest){
 
         System.out.println("Room Object from Service "+customerRequest);
         Customer cs = Customer.builder()
@@ -22,6 +22,7 @@ public class CustomerService {
         System.out.println(cs);
 
         customerRepository.save(cs);
+        return cs;
 
     }
 }
