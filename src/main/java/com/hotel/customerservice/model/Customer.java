@@ -14,6 +14,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 public class Customer {
     @Id
+    private String id;
     private String firstName;
     private String lastName;
     private String city;
