@@ -22,12 +22,13 @@ public class CustomerService {
 
         System.out.println(cs);
 
-        customerRepository.save(cs);
+        Customer savedCustomer=  customerRepository.save(cs);
 
         CustomerResponse customerResponse = CustomerResponse.builder()
-                .firstName(cs.getFirstName())
-                .lastName(cs.getLastName())
-                .city(cs.getCity())
+                .id(savedCustomer.getId())
+                .firstName(savedCustomer.getFirstName())
+                .lastName(savedCustomer.getLastName())
+                .city(savedCustomer.getCity())
                 .build();
 
         return customerResponse;
