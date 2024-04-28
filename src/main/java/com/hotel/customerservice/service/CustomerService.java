@@ -7,6 +7,8 @@ import com.hotel.customerservice.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
@@ -33,5 +35,21 @@ public class CustomerService {
 
         return customerResponse;
 
+    }
+
+    public List<CustomerResponse> getAll() {
+        List<Customer> customers = customerRepository.findAll();
+        List<CustomerResponse> customerResponses=customers.stream().map(customer -> getCustomerResponse(customer)).toList();
+        return customerResponses;
+    }
+
+    private CustomerResponse getCustomerResponse(Customer customer) {
+        return
+        CustomerResponse.builder()
+                .id(customer.getId())
+                .firstName(customer.getFirstName())
+                .lastName(customer.getLastName())
+                .city(customer.getCity())
+                .build();
     }
 }
