@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -55,12 +56,20 @@ public class CustomerService {
 
     public CustomerResponse findByID(String customerID) {
 
-        Customer customer =  customerRepository.getBYID(customerID);
-        return CustomerResponse.builder()
-                .id(customer.getId())
-                .firstName(customer.getFirstName())
-                .lastName(customer.getLastName())
-                .city(customer.getCity())
-                .build();
+        Optional<Customer> optCustomer = Optional.ofNullable(customerRepository.getBYID(customerID));
+
+        if (optCustomer.isPresent()) {
+            Customer customer = optCustomer.get();
+            return CustomerResponse.builder()
+                    .id(customer.getId())
+                    .firstName(customer.getFirstName())
+                    .lastName(customer.getLastName())
+                    .city(customer.getCity())
+                    .build();
+        }
+        else{
+            return null;
+        }
     }
+
 }
