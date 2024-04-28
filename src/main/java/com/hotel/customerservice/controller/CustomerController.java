@@ -20,7 +20,8 @@ public class CustomerController {
 //        System.out.println("Room Service");
 //        System.out.println(roomRequest);
 
-        return customerService.create(customerRequest);
+        CustomerResponse customerResponse = customerService.create(customerRequest);
+        return customerResponse;
 
     }
 }
