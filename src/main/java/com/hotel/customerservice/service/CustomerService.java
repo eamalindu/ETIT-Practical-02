@@ -52,4 +52,15 @@ public class CustomerService {
                 .city(customer.getCity())
                 .build();
     }
+
+    public CustomerResponse findByID(String customerID) {
+
+        Customer customer =  customerRepository.getBYID(customerID);
+        return CustomerResponse.builder()
+                .id(customer.getId())
+                .firstName(customer.getFirstName())
+                .lastName(customer.getLastName())
+                .city(customer.getCity())
+                .build();
+    }
 }
